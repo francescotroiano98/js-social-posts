@@ -94,25 +94,27 @@ posts.forEach(( postElement, index ) => {
 </div>`
 });
 
- likeButton = document.querySelector(".likes__cta")
+const likeButtons = document.querySelectorAll(".likes__cta");
 
-likeElement = document.querySelector("a.like-button")
+likeButtons.forEach((likeButton) => {
 
-let isLikeButtonActive = true;
+  const likeElement = likeButton.querySelector("a.like-button");
 
-likeButton.addEventListener("click", function(){
+  let isLikeButtonActive = true;
 
-    if(isLikeButtonActive === true){
+  likeButton.addEventListener("click", function () {
 
-        likeElement.classList.add("color-red");
+    if (isLikeButtonActive) {
+
+      likeElement.classList.add("color-red");
+
+      isLikeButtonActive = false;
+
+    } else {
         
-        isLikeButtonActive = false
-    } else if (isLikeButtonActive !== true) {
+      likeElement.classList.remove("color-red");
 
-        likeElement.classList.remove("color-red")
-
-        isLikeButtonActive = true
+      isLikeButtonActive = true;
     }
-
-
+  });
 });
