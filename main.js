@@ -93,3 +93,26 @@ posts.forEach(( postElement, index ) => {
     </div>            
 </div>`
 });
+
+ likeButton = document.querySelector(".likes__cta")
+
+likeElement = document.querySelector("a.like-button")
+
+let isLikeButtonActive = true;
+
+likeButton.addEventListener("click", function(){
+
+    if(isLikeButtonActive === true){
+
+        likeElement.classList.add("color-red");
+        
+        isLikeButtonActive = false
+    } else if (isLikeButtonActive !== true) {
+
+        likeElement.classList.remove("color-red")
+
+        isLikeButtonActive = true
+    }
+
+
+});
