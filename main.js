@@ -57,7 +57,7 @@ const posts = [
 ];
 const divElementContainer = document.getElementById('container');
 
-posts.forEach(( postElement, index ) => {
+posts.forEach(( postElement,) => {
     divElementContainer.innerHTML +=
 
     ` <div class="post">
@@ -94,53 +94,36 @@ posts.forEach(( postElement, index ) => {
 </div>`
 });
 
-const likeButtons = document.querySelectorAll(".likes__cta");
+ likeButton = document.querySelector(".likes__cta");
 
-const likes1 = posts[0].likes; // 80
-const likes2 = posts[1].likes; // 120
-const likes3 = posts[2].likes; // 78
-const likes4 = posts[3].likes; // 56
-const likes5 = posts[4].likes; // 95
+likeElement = document.querySelector("a.like-button");
+
+divNumbersOfLikes = document.querySelector("likes__counter");
+
+numbersOfLikes = document.querySelector("b.js-likes-counter");
 
 
-
-likeButtons.forEach((likeButton, index) => {
-
-  const likeElement = likeButton.querySelector("a.like-button");
- 
+let isLikeButtonActive = true;
 
 
 
-  let isLikeButtonActive = true;
+likeButton.addEventListener("click", function(){
 
-  likeButton.addEventListener("click", function () {
+    if(isLikeButtonActive === true){
 
-    const likesPostElement = document.getElementById("like-counter-1");
+        likeElement.classList.add("color-red");
 
-    if (isLikeButtonActive) {
+        numbersOfLikes.innerHTML = posts[0].likes + 1 ;
 
-      likeElement.classList.add("color-red");
+        isLikeButtonActive = false
+    } else if (isLikeButtonActive !== true) {
 
-      isLikeButtonActive = false;
+        likeElement.classList.remove("color-red");
 
-       // Aggiungi il valore dei likes corrispondente all'indice
-       const post = posts[index];
-       post.likes += 1; // Aggiungi 1 al valore dei likes
- 
-       // Aggiorna il testo del likeElement con il nuovo valore
-       likeButton.innerHTML = `${post.likes}`;
-    } else {
-        
-      likeElement.classList.remove("color-red");
+        numbersOfLikes.innerHTML = posts[0].likes ;
 
-      isLikeButtonActive = true;
-      // Sottrai il valore dei likes corrispondente all'indice
-      const post = posts[index];
-      post.likes -= 1; // Sottrai 1 dal valore dei likes
-
-      // Aggiorna il testo del likeElement con il nuovo valore
-      likeButton.innerHTML = `${post.likes}`;
-    
+        isLikeButtonActive = true
     }
-  });
+
+
 });
